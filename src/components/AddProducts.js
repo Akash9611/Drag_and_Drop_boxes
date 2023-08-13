@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import SectionComponent from './SectionComponent';
 
-//Start updating
 const AddProducts = () => {
     const [showBoxDropdown, setShowBoxDropdown] = useState(false);
     // const [selectedItem, setSelectedItem] = useState('');
@@ -24,6 +23,22 @@ const AddProducts = () => {
 
     // console.log(createdBox); send this to backend to store the new positions of Sections div
 
+    //Drag and Drop functionality
+    const handleDragStart = (e, index) =>{
+        e.dataTransfer.setData('index', index);
+    }
+
+    const handleDragOver = (e) =>{
+        e.preventDefault();
+    }
+
+    const handleDrop = (e, index) =>{
+        e.preventDefault();
+        const oldIndex = e.dataTransfer.getData('index');
+        const newCreatedBox = [...createdBox];
+        newCreatedBox.splice(index, 0 , newCreatedBox.splice(oldIndex, 1)[0]);
+        setCreatedBox(newCreatedBox)
+    }
     return (
         <div className='pt-4 overflow-hidden flex flex-col items-center'>
             <div className='flex mx-14 md:gap-20 lg:gap-60 gap-10'>

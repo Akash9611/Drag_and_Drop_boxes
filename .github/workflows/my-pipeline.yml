@@ -54,4 +54,9 @@ jobs:
 
       - name: Printing Local env variable
         run : echo " VAR1 = ${{env.VAR1}}"
+
+      - name: Printing Super Local env variable
+        run : echo "this is a super local variable $SUPER_VAR"
+        env : 
+          SUPER_VAR : "Hello I am local variable"
     

@@ -3,7 +3,10 @@
 # ----------------------------
 
 name: My-GitHub-Action-tutorial
-
+env : 
+  APPLICATION_NAME : "Drag_And_Drop_App"
+  DEPLOY_PACKAGE_NAME: "dragDrop-app-ver-${{github.sha}}"
+  
 on:
   push:
     branches:
@@ -21,6 +24,7 @@ jobs:
         run : |
           echo "Hello msg 1"
           echo "Hello msg 2"
+          "Printing Global Env Varialbe ${{env.DEPLOY_PACKAGE_NAME}}"
 
       - name: list current folder
         run : ls -la
@@ -41,4 +45,7 @@ jobs:
 
       - name: list current folder
         run : ls -la
+
+      - name: Printing Global env variable
+        run : "${{env.DEPLOY_PACKAGE_NAME}}"
     

@@ -1,10 +1,10 @@
 import './App.css';
-import AddProducts from './components/AddProducts';
+import AddSectionBox from './components/AddSectionBox';
 
 function App() {
   return (
     <div className="App">
-    <AddProducts/>
+    <AddSectionBox/>
     </div>
   );
 }

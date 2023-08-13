@@ -10,17 +10,35 @@ on:
       - main
 
 jobs:
-  my_testing:
+  testing:
     runs-on: [ubuntu-latest]
 
     steps:
       - name: Print message from testing job
         run : echo "Hello World"
 
+      - name: Execute multiple messages
+        run : |
+          echo "Hello msg 1"
+          echo "Hello msg 2"
+
+      - name: list current folder
+        run : ls -la
+        
+      - name: Clone my repo
+        uses: action/checkout@v1
+      
+      - name: list folder after cloning git repo
+        run : ls -la
+        
   deploy:
     runs-on: [ubuntu-latest]
+    needs: [testing]
 
     steps:
       - name: Print message from deploy job
         run: echo "Project Deployed msg"
+
+      - name: list current folder
+        run : ls -la
     

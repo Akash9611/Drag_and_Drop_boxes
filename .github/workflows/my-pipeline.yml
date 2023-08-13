@@ -53,5 +53,5 @@ jobs:
         run : echo " App Name - ${{env.APPLICATION_NAME}}"
 
       - name: Printing Local env variable
-        run : echo " App Name - ${{env.VAR1}}"
+        run : echo " VAR1 = ${{env.VAR1}}"
     

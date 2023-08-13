@@ -3,3 +3,24 @@
 # ----------------------------
 
 name: My-GitHub-Action-tutorial
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  my_testing:
+    runs-on: [ubuntu-latest]
+
+    steps:
+      - name: Print message from testing job
+        run : echo "Hello World"
+
+  deploy:
+    runs-on: [ubuntu-latest]
+
+    steps:
+      - name: Print message from deploy job
+        run: echo "Project Deployed msg"
+    

@@ -38,6 +38,9 @@ jobs:
   deploy:
     runs-on: [ubuntu-latest]
     needs: [testing]
+    env:
+      VAR1 : "this env variables inside the jobs act as a Local env Variables"
+      VAR2 : "Darag and Drop Application"
 
     steps:
       - name: Print message from deploy job
@@ -47,5 +50,8 @@ jobs:
         run : ls -la
 
       - name: Printing Global env variable
-        run : echo "${{env.DEPLOY_PACKAGE_NAME}}"
+        run : echo " App Name - ${{env.APPLICATION_NAME}}"
+
+      - name: Printing Local env variable
+        run : echo " App Name - ${{env.VAR1}}"
     

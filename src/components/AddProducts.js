@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import SectionComponent from './SectionComponent';
 
+//Start updating
 const AddProducts = () => {
     const [showBoxDropdown, setShowBoxDropdown] = useState(false);
     // const [selectedItem, setSelectedItem] = useState('');

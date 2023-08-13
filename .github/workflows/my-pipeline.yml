@@ -1,3 +1,66 @@
 # ----------------------------
 # Learning git Action
 # ----------------------------
+
+# ----------------------------
+# Learning git Action
+# ----------------------------
+
+name: My-GitHub-Action-tutorial
+env : 
+  APPLICATION_NAME : "Drag_And_Drop_App"
+  DEPLOY_PACKAGE_NAME: "dragDrop-app-ver-${{github.sha}}"
+  
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  testing:
+    runs-on: [ubuntu-latest]
+
+    steps:
+      - name: Print message from testing job
+        run : echo "Hello World"
+
+      - name: Execute multiple messages
+        run : |
+          echo "Hello msg 1"
+          echo "Hello msg 2"
+          echo "Printing Global Env Varialbe ${{env.DEPLOY_PACKAGE_NAME}}"
+
+      - name: list current folder
+        run : ls -la
+        
+      - name: Clone my repo
+        uses: actions/checkout@v1
+      
+      - name: list folder after cloning git repo
+        run : ls -la
+        
+  deploy:
+    runs-on: [ubuntu-latest]
+    needs: [testing]
+    env:
+      VAR1 : "this env variables inside the jobs act as a Local env Variables"
+      VAR2 : "Darag and Drop Application"
+
+    steps:
+      - name: Print message from deploy job
+        run: echo "Project Deployed msg"
+
+      - name: list current folder
+        run : ls -la
+
+      - name: Printing Global env variable
+        run : echo " App Name - ${{env.APPLICATION_NAME}}"
+
+      - name: Printing Local env variable
+        run : echo " VAR1 = ${{env.VAR1}}"
+
+      - name: Printing Super Local env variable
+        run : echo "this is a super local variable $SUPER_VAR"
+        env : 
+          SUPER_VAR : "Hello I am local variable"
+    
